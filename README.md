@@ -1,5 +1,5 @@
 # Project-Game-Jonathan
-Three Card Poker
+Texas Hold Em 
     -You are a player at the poker table with $200
     -To initiate play you must ante (pay entry to see initial cards ex: $2)
     -if ante is offered cards are dealt in sequence specified in wireframe
