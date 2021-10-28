@@ -8,6 +8,7 @@
     <title>Jonathan's Casino Royale</title>
 </head>
 <h1>Pumpkin Patch Poker</h1>
+<div class = "Situation">Place Your Bets </div>
     <container id='cards'>
         <div class='playerCardOne'>playerCardOne</div>
         <div class='playerCardTwo'>playerCardTwo</div>
@@ -19,11 +20,16 @@
         <div class='communityCardFour'>communityCardFour</div>
         <div class='communityCardFive'>communityCardFive</div>
     </container>
-    <input type="number" id="myNumber" value="">
-    <button class="bet">Bet</button>
-    <button class="check">Check</button>
+   
+    <input type="number" min="1" id="input" value='1'>
+    <button class="bet" >Bet</button>
     <button class="fold">Fold</button>
-    <div class='bankroll'>300</div>
+    <div class='bankroll'min='0'>300</div>
+    <p id="ante"></p>
+    <p id="preflop"></p>
+    <p id="flop"></p>
+    <p id="turn"></p>
+    <p id="river"></p>
 <body>
     <script src="js/app.js"></script>
 </body>
