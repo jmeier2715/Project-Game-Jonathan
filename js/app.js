@@ -112,9 +112,6 @@ window.onload = function obama(){
    
 };
 
-
-        
-
 let betFunctions = [
     () => {
             playerCardOne.innerText = s[1],
@@ -164,7 +161,7 @@ let betFunctions = [
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(b)
         function checkLoss (){
             if(bankroll.innerText <= '0'){
-                console.log('You lose')
+                situation.innerText='Out of Money? Time to Hit the ATM!'
             }
         }
         checkLoss()
@@ -174,6 +171,7 @@ let betFunctions = [
         else {
             situation.innerText='Maybe next time'
         }
+        checkLoss()
     }, 
     () => {  
         // bankroll.innerText = (Number.parseInt(bankroll.innerText))+(2 * (Number.parseInt(document.getElementById('outcome').innerHTML)))

@@ -1,16 +1,21 @@
 # Project-Game-Jonathan
 Texas Hold Em 
-    -You are a player at the poker table with $200
-    -To initiate play you must ante (pay entry to see initial cards ex: $2)
+    -You are a player at the poker table with $300
+    -To initiate play you must pay initial buy in (ante) (pay entry to see initial cards ex: $2)
     -if ante is offered cards are dealt in sequence specified in wireframe
     -first distribution is two cards to player, two cards to dealer
-    -player decides whether to bet more money or fold, consequentially forfeiting their ante money
-    -second distribution is four cards, one face down and three more in the community section
-    -The winner is the party with the better five card hand using the two dealt + the three community cards
+    -player decides whether to bet more money (preflop) or fold, consequentially forfeiting their ante money
+    -second distribution is three cards for the community (cards to be shared by dealer and player in order to make a better five card hand)
+    -second round of betting commences (flop betting)
+    -third distribution is one more community card
+    -third round of betting commences (turn betting)
+    -third distribution is one more community card
+    - final round of betting (the river)
+    -The winner is the party with the better five card hand using the two dealt + the five community cards
     -if the player wins, they receive a match of whatever they bet
     -if the dealer wins, the player loses what they bet throughout the game
+    -the game is over when the player runs out of money
 
-    the game ends when player runs out of money 
 
     mvp goals:
     -must be able to randomly draw cards from a finite, individual 52 deck pile 1/52, 1/51, 1/50 etc etc
