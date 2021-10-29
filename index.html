@@ -8,7 +8,7 @@
     <title>Jonathan's Casino Royale</title>
 </head>
 <h1>Pumpkin Patch Poker</h1>
-<div class = "Situation">Place Your Bets </div>
+<div class = "situation">Place Your Bets </div>
     <container id='cards'>
         <div class='playerCardOne'>playerCardOne</div>
         <div class='playerCardTwo'>playerCardTwo</div>
@@ -22,19 +22,20 @@
     </container>
    <div id = outcome>hello</div>
    <form id=form>
-        <input type="number" min="1" max=.bankroll id="input" value='1'>
+        
         <button class="fold">Show Me The Money!</button>
     </form> 
+    <input type="number" min="1" max=.bankroll id="input" value='1'>
         <button class="bet" id='bet' >Bet</button>
         
    
     <div class='bankroll'min='0'>300</div>
-    <p id="ante"></p>
-    <p id="preflop"></p>
-    <p id="flop"></p>
-    <p id="turn"></p>
-    <p id="river"></p>
-    <ul id= jsonResponse>hello</ul>
+    <p id="ante">Ante:</p>
+    <p id="preflop">Preflop:</p>
+    <p id="flop">Flop:</p>
+    <p id="turn">Turn:</p>
+    <p id="river">River:</p>
+    <p id= jsonResponse>hello</p>
 <body>
     <script src="js/app.js"></script>
 </body>

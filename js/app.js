@@ -1,40 +1,37 @@
 const url ='https://api.pokerapi.dev/v1/winner/texas_holdem?cc='
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    // let fold = document.getElementById('fold');
-    // let btnBet = document.getElementsby('bet');
-    form.addEventListener('click', (e) =>{
+   form.addEventListener('click', (e) =>{
         e.preventDefault()
         // fetch the data
-        fetch(url+communityCardOne.innerText+','+communityCardTwo.innerText+','+communityCardThree.innerText+','
-        +communityCardFour.innerText+','+communityCardFive.innerText+'&pc['+']='+playerCardOne.innerText+','
-        +playerCardTwo.innerText+'&pc['+']='+dealerCardOne.innerText+','+dealerCardTwo.innerText)
+        fetch(url+s[5]+','+s[6]+','+s[7]+','
+        +s[8]+','+s[9]+'&pc['+']='+s[1]+','
+        +s[2]+'&pc['+']='+s[3]+','+s[4])
   
-
         .then((response)=>{
             return response.json()
             
         })
         .then((jsonData)=>{ 
-            console.log(jsonData.players)
-            jsonData.players.forEach(appendData)
+            console.log(jsonData.winners)
+            jsonData.winners.forEach(appendData)
         })
         .catch((error)=>{
             console.log("ERROR!!!!!")
             console.log(error)
         })
         const appendData = (person) =>{
-            const li = document.createElement("li")
-            li.textContent = `Cards: ${person.cards} 
-           Hand: ${person.result}`
-            jsonResponse.appendChild(li)
+            let li = document.getElementById("jsonResponse")
+            li.textContent = `${person.cards}`
+            // jsonResponse.appendChild(li)
             } 
 
     })
    
-    
+   
 // let jsonDatajs= jsonData
 // console.log(jsonDatajs)
+let situation = document.querySelector('.situation')
 let playerCardOne = document.querySelector('.playerCardOne')
 let playerCardTwo = document.querySelector('.playerCardTwo')
 let dealerCardOne = document.querySelector('.dealerCardOne')
@@ -45,8 +42,10 @@ let communityCardThree = document.querySelector('.communityCardThree')
 let communityCardFour = document.querySelector('.communityCardFour')
 let communityCardFive = document.querySelector('.communityCardFive')
 
+let good = true
+console.log(good)
 
-
+// console.log(li.innerText) 
 
 let bankroll = document.querySelector('.bankroll')
 let i = 0
@@ -59,9 +58,10 @@ var s = as.sort(func);
 function func(a, b) {  
   return 0.5 - Math.random();
 } 
+console.log(s)
 
 function michelle () {
-    betFunctions[i++ ]();
+    betFunctions[i++]();
     if (betFunctions[i==betFunctions.length]){
         return
     }
@@ -69,6 +69,7 @@ function michelle () {
 };
 let outcome = document.querySelector('outcome')
 console.log(outcome)
+
 
 
 window.onload = function obama(){
@@ -83,9 +84,7 @@ window.onload = function obama(){
 let betFunctions = [
     () => {
             playerCardOne.innerText = s[1],
-            playerCardTwo.innerText = s[2],
-            dealerCardOne.innerText = s[3],
-            dealerCardTwo.innerText = s[4]
+            playerCardTwo.innerText = s[2]
             var x = parseInt(document.getElementById("input").value);
             document.getElementById("ante").innerHTML = `Ante: $${x}`;
             bankroll.innerText = (Number.parseInt(bankroll.innerText))- (Number.parseInt(x))
@@ -122,23 +121,118 @@ let betFunctions = [
         console.log('quad dragons')
     },
     () => {
+        dealerCardOne.innerText = s[3],
+        dealerCardTwo.innerText = s[4]
         var b = document.getElementById("input").value;
         document.getElementById("river").innerHTML = `River: $${b}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(b))
         console.log('quint dragons')
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(b)
-        
+        function checkLoss (){
+            if(bankroll.innerText <= '0'){
+                console.log('You lose')
+            }
+        }
+        checkLoss()
+        if ((playerCardOne.innerText+','+playerCardTwo.innerText) == (jsonResponse.innerText)){
+            situation.innerText='Nice Win!'
+        }
+        else {
+            situation.innerText='Maybe next time'
+        }
+    }, 
+    () => {  
         // bankroll.innerText = (Number.parseInt(bankroll.innerText))+(2 * (Number.parseInt(document.getElementById('outcome').innerHTML)))
-        bankroll.innerText = Number.parseInt(bankroll.innerText)
+        
+        console.log(playerCardOne.innerText+','+playerCardTwo.innerText)
+        console.log(jsonResponse.innerText)
+        winCheck()
+        function winCheck (){
+        if ((playerCardOne.innerText+','+playerCardTwo.innerText) == (jsonResponse.innerText)){
+            var s = as.sort(func)
+            console.log(s);  
+            function func(a, b) {  
+            return 0.5 - Math.random();
+            }
+            function buttonReset (){
+                i=0
+            }
+            buttonReset()
+            playerCardOne.innerText = 'playerCardOne',
+            playerCardTwo.innerText = 'playerCardTwo',
+            dealerCardOne.innerText = 'dealerCardOne',
+            dealerCardTwo.innerText = 'dealerCardTwo'            
+            communityCardOne.innerText = 'communityCardOne',
+            communityCardTwo.innerText = 'communityCardTwo',
+            communityCardThree.innerText = 'communityCardThree',
+            communityCardFour.innerText = 'communityCardFour',
+            communityCardFive.innerText = 'communityCardFive'
+            bankroll.innerText = (Number.parseInt(bankroll.innerText))+(2 * (Number.parseInt(document.getElementById('outcome').innerHTML)))
+            
+            document.getElementById('outcome').innerHTML = 'hello'
+
+            document.getElementById("ante").innerHTML = 'Ante:'
+            document.getElementById("preflop").innerHTML = 'Preflop:'
+            document.getElementById("flop").innerHTML = 'Flop:'
+            document.getElementById("turn").innerHTML = 'Turn:'
+            document.getElementById("river").innerHTML = 'River:'
+            situation.innerText='Place Your Bets'
+        }
+        else{
+            bankroll.innerText = Number.parseInt(bankroll.innerText)
+            var s = as.sort(func)
+            console.log(s);  
+            function func(a, b) {  
+            return 0.5 - Math.random();
+            }
+            function buttonReset (){
+                i=0
+            }
+            buttonReset()
+            playerCardOne.innerText = 'playerCardOne',
+            playerCardTwo.innerText = 'playerCardTwo',
+            dealerCardOne.innerText = 'dealerCardOne',
+            dealerCardTwo.innerText = 'dealerCardTwo'            
+            communityCardOne.innerText = 'communityCardOne',
+            communityCardTwo.innerText = 'communityCardTwo',
+            communityCardThree.innerText = 'communityCardThree',
+            communityCardFour.innerText = 'communityCardFour',
+            communityCardFive.innerText = 'communityCardFive'
+
+            document.getElementById('outcome').innerHTML = 'hello'
+
+            document.getElementById("ante").innerHTML = 'Ante:'
+            document.getElementById("preflop").innerHTML = 'Preflop:'
+            document.getElementById("flop").innerHTML = 'Flop:'
+            document.getElementById("turn").innerHTML = 'Turn:'
+            document.getElementById("river").innerHTML = 'River:'
+            
+            situation.innerText='Place Your Bets'
+
+            }
+        }
+}
+    
+    // (dealerCardOne+','+dealerCardTwo == jsonResponse.innerText)
+
+        // function winner(){
+        
+        
+        
+        // function loser(){
+
+
+        
+    
         // function checkWin{
         //     bankroll.innerText = (Number.parseInt(bankroll.innerText))+((Number.parseInt(document.getElementById('outcome').innerHTML)*2))
     
         // }
-        return
+        
         //insert check win function here
         //insert subtract or add balance here
         //reveal the dealer's cards onclick here 
-    }
     
     ];
+    
 })
