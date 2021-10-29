@@ -1,33 +1,32 @@
 const url ='https://api.pokerapi.dev/v1/winner/texas_holdem?cc='
-
 document.addEventListener("DOMContentLoaded", ()=>{
-   form.addEventListener('click', (e) =>{
-        e.preventDefault()
-        // fetch the data
-        fetch(url+s[5]+','+s[6]+','+s[7]+','
-        +s[8]+','+s[9]+'&pc['+']='+s[1]+','
-        +s[2]+'&pc['+']='+s[3]+','+s[4])
-  
-        .then((response)=>{
-            return response.json()
-            
-        })
-        .then((jsonData)=>{ 
-            console.log(jsonData.winners)
-            jsonData.winners.forEach(appendData)
-        })
-        .catch((error)=>{
-            console.log("ERROR!!!!!")
-            console.log(error)
-        })
-        const appendData = (person) =>{
-            let li = document.getElementById("jsonResponse")
-            li.textContent = `${person.cards}`
-            // jsonResponse.appendChild(li)
-            } 
-
-    })
+    form.addEventListener('click', (e) =>{
+         e.preventDefault()
+         // fetch the data
+         fetch(url+s[5]+','+s[6]+','+s[7]+','
+         +s[8]+','+s[9]+'&pc['+']='+s[1]+','
+         +s[2]+'&pc['+']='+s[3]+','+s[4])
    
+         .then((response)=>{
+             return response.json()
+             
+         })
+         .then((jsonData)=>{ 
+             console.log(jsonData.winners)
+             jsonData.winners.forEach(appendData)
+         })
+         .catch((error)=>{
+             console.log("ERROR!!!!!")
+             console.log(error)
+         })
+         const appendData = (person) =>{
+             let li = document.getElementById("jsonResponse")
+             li.textContent = `${person.cards}`
+             // jsonResponse.appendChild(li)
+             } 
+ 
+     })
+
    
 // let jsonDatajs= jsonData
 // console.log(jsonDatajs)
@@ -70,16 +69,51 @@ function michelle () {
 let outcome = document.querySelector('outcome')
 console.log(outcome)
 
+function fold (){
+    bankroll.innerText = Number.parseInt(bankroll.innerText)
+    var s = as.sort(func)
+    console.log(s);  
+    function func(a, b) {  
+    return 0.5 - Math.random();
+    }
+    function buttonReset (){
+        i=0
+    }
+    buttonReset()
+    playerCardOne.innerText = 'playerCardOne',
+    playerCardTwo.innerText = 'playerCardTwo',
+    dealerCardOne.innerText = 'dealerCardOne',
+    dealerCardTwo.innerText = 'dealerCardTwo'            
+    communityCardOne.innerText = 'communityCardOne',
+    communityCardTwo.innerText = 'communityCardTwo',
+    communityCardThree.innerText = 'communityCardThree',
+    communityCardFour.innerText = 'communityCardFour',
+    communityCardFive.innerText = 'communityCardFive'
 
+    jsonResponse.innerText
+
+    document.getElementById('outcome').innerHTML = 'hello'
+
+    document.getElementById("ante").innerHTML = 'Ante:'
+    document.getElementById("preflop").innerHTML = 'Preflop:'
+    document.getElementById("flop").innerHTML = 'Flop:'
+    document.getElementById("turn").innerHTML = 'Turn:'
+    document.getElementById("river").innerHTML = 'River:'
+    
+    situation.innerText='Place Your Bets'
+
+}
 
 window.onload = function obama(){
     let btnBet = document.getElementsByClassName('bet')[0];
     btnBet.addEventListener('click', michelle)
-    // btnBet.addEventListener('click', fold)
-    let fold = document.querySelector('fold');
-    console.log(fold)
+    let btnfold = document.getElementsByClassName('igiveup')[0];
+    btnfold.addEventListener('click', fold)
+   
 };
 
+
+        
 
 let betFunctions = [
     () => {
@@ -169,6 +203,7 @@ let betFunctions = [
             communityCardFive.innerText = 'communityCardFive'
             bankroll.innerText = (Number.parseInt(bankroll.innerText))+(2 * (Number.parseInt(document.getElementById('outcome').innerHTML)))
             
+            jsonResponse.innerText =('hello')
             document.getElementById('outcome').innerHTML = 'hello'
 
             document.getElementById("ante").innerHTML = 'Ante:'
@@ -199,6 +234,8 @@ let betFunctions = [
             communityCardFour.innerText = 'communityCardFour',
             communityCardFive.innerText = 'communityCardFive'
 
+            jsonResponse.innerText
+
             document.getElementById('outcome').innerHTML = 'hello'
 
             document.getElementById("ante").innerHTML = 'Ante:'
@@ -212,26 +249,6 @@ let betFunctions = [
             }
         }
 }
-    
-    // (dealerCardOne+','+dealerCardTwo == jsonResponse.innerText)
-
-        // function winner(){
-        
-        
-        
-        // function loser(){
-
-
-        
-    
-        // function checkWin{
-        //     bankroll.innerText = (Number.parseInt(bankroll.innerText))+((Number.parseInt(document.getElementById('outcome').innerHTML)*2))
-    
-        // }
-        
-        //insert check win function here
-        //insert subtract or add balance here
-        //reveal the dealer's cards onclick here 
     
     ];
     
