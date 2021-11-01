@@ -1,33 +1,42 @@
 const url ='https://api.pokerapi.dev/v1/winner/texas_holdem?cc='
 document.addEventListener("DOMContentLoaded", ()=>{
-    form.addEventListener('click', (e) =>{
-         e.preventDefault()
-         // fetch the data
-         fetch(url+s[5]+','+s[6]+','+s[7]+','
-         +s[8]+','+s[9]+'&pc['+']='+s[1]+','
-         +s[2]+'&pc['+']='+s[3]+','+s[4])
-   
-         .then((response)=>{
-             return response.json()
-             
+    let btnBet = document.getElementsByClassName('bet')[0];
+     btnBet.addEventListener('click', e => {
+                e.preventDefault()
+                // fetch the data
+                fetch(url+s[5]+','+s[6]+','+s[7]+','
+                +s[8]+','+s[9]+'&pc['+']='+s[1]+','
+                +s[2]+'&pc['+']='+s[3]+','+s[4])
+          
+                .then((response)=>{
+                    return response.json()
+                    
+                })
+                .then((jsonData)=>{ 
+                    console.log(jsonData.winners)
+                    jsonData.winners.forEach(appendData)
+                })
+                .catch((error)=>{
+                    console.log("ERROR!!!!!")
+                    console.log(error)
+                })
+                const appendData = (person) =>{
+                    let li = document.getElementById("jsonResponse")
+                    li.textContent = `${person.cards}`
+                    // jsonResponse.appendChild(li)
+                    } 
          })
-         .then((jsonData)=>{ 
-             console.log(jsonData.winners)
-             jsonData.winners.forEach(appendData)
-         })
-         .catch((error)=>{
-             console.log("ERROR!!!!!")
-             console.log(error)
-         })
-         const appendData = (person) =>{
-             let li = document.getElementById("jsonResponse")
-             li.textContent = `${person.cards}`
-             // jsonResponse.appendChild(li)
-             } 
- 
-     })
 
-   
+         function weakShit () {
+            var bitchassJSON = document.getElementById("jsonResponse"),
+                displayValue = "";
+            if (bitchassJSON.style.display == "")
+                displayValue = "none";
+        
+            bitchassJSON.style.display = displayValue;
+        }
+     
+
 // let jsonDatajs= jsonData
 // console.log(jsonDatajs)
 let situation = document.querySelector('.situation')
@@ -49,6 +58,7 @@ console.log(good)
 let bankroll = document.querySelector('.bankroll')
 let i = 0
 
+
 //functions that controls card distribution
 var parts = [['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'], ['C', 'S', 'D', 'H']],
     result = parts.reduce((a, b) => a.reduce((r, v) => r.concat(b.map(w => [].concat(v, w))), []));
@@ -61,7 +71,9 @@ console.log(s)
 
 function michelle () {
     betFunctions[i++]();
+    console.log(i)
     if (betFunctions[i==betFunctions.length]){
+        
         return
     }
     console.log('vegetables');
@@ -121,6 +133,7 @@ let betFunctions = [
             bankroll.innerText = (Number.parseInt(bankroll.innerText))- (Number.parseInt(x))
             // console.log(Number.parseInt(x))
             document.getElementById('outcome').innerHTML = parseInt(x)
+            weakShit ()
             
     },
     () => {
@@ -134,6 +147,7 @@ let betFunctions = [
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(y)
         console.log('twin dragons')
         
+        
     },
     () => {
         communityCardFour.innerText = s[8]
@@ -142,6 +156,7 @@ let betFunctions = [
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(z))
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(z)
         console.log('triple dragons')
+       
     },
     () => {
         communityCardFive.innerText = s[9]
@@ -150,6 +165,7 @@ let betFunctions = [
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(a))
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(a)
         console.log('quad dragons')
+        
     },
     () => {
         dealerCardOne.innerText = s[3],
@@ -159,6 +175,7 @@ let betFunctions = [
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(b))
         console.log('quint dragons')
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(b)
+        weakShit ()
         function checkLoss (){
             if(bankroll.innerText <= '0'){
                 situation.innerText='Out of Money? Time to Hit the ATM!'
