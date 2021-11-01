@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Jonathan's Casino Royale</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="card.css" media="screen"> -->
 </head>
 <h1>Pumpkin Patch Poker</h1>
 <div class = "situation">Place Your Bets </div>
-    <container id='cards'>
-        <div class='playerCardOne'>playerCardOne</div>
-        <div class='playerCardTwo'>playerCardTwo</div>
-        <div class='dealerCardOne'>dealerCardOne</div>
-        <div class='dealerCardTwo'>dealerCardTwo</div>
-        <div class='communityCardOne'>communityCardOne</div>
-        <div class='communityCardTwo'>communityCardTwo</div>
-        <div class='communityCardThree'>communityCardThree</div>
-        <div class='communityCardFour'>communityCardFour</div>
-        <div class='communityCardFive'>communityCardFive</div>
+
+
+    <img id='cardOne'>
+    <img id='cardTwo'>
+    <img id='cardThree'>
+    <img id='cardFour'>
+    <img id='cardFive'>
+    <img id='cardSix'>
+    <img id='cardSeven'>
+    <img id='cardEight'>
+    <img id='cardNine'>
+
+    <container id='monte'>
+        <div class='playerCards'>
+            <div class='playerCardOne'>playerCardOne</div>
+            <div class='playerCardTwo'>playerCardTwo</div>
+        </div>
+
+        <div class='dealerCards'>
+            <div class='dealerCardOne'>dealerCardOne</div>
+            <div class='dealerCardTwo'>dealerCardTwo</div>
+        </div>
+
+        <div class='communityCards'>
+            <div class='communityCardOne'>communityCardOne</div>
+            <div class='communityCardTwo'>communityCardTwo</div>
+            <div class='communityCardThree'>communityCardThree</div>
+            <div class='communityCardFour'>communityCardFour</div>
+            <div class='communityCardFive'>communityCardFive</div>
+        </div>
+
+
     </container>
-   <div id = outcome>hello</div>
-   <form id=form>
-        
-        <button class="fold">Show Me The Money!</button>
-    </form> 
+   <div id = outcome>hello</div> 
     <input type="number" min="1" max=.bankroll id="input" value='1'>
-        <button class="bet" id='bet' >Bet</button>
-        <button class="igiveup" id='igiveup' >Fold</button>
+    <button class="bet" id='bet' >Bet</button>
+    <button class="igiveup" id='igiveup' >Fold</button>
         
    
     <div class='bankroll'min='0'>300</div>

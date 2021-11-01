@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     
                 })
                 .then((jsonData)=>{ 
-                    console.log(jsonData.winners)
                     jsonData.winners.forEach(appendData)
                 })
                 .catch((error)=>{
@@ -27,15 +26,32 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     } 
          })
 
-         function weakShit () {
-            var bitchassJSON = document.getElementById("jsonResponse"),
-                displayValue = "";
-            if (bitchassJSON.style.display == "")
-                displayValue = "none";
-        
-            bitchassJSON.style.display = displayValue;
-        }
+function weakShit () {
+    var bitchassJSON = document.getElementById("jsonResponse"),
+        displayValue = "";
+        if (bitchassJSON.style.display == "")
+        displayValue = "none";
+        bitchassJSON.style.display = displayValue;
+        }         
      
+
+
+let cardOne = document.getElementById('cardOne')
+let cardTwo = document.getElementById('cardTwo')
+
+let cardThree = document.getElementById('cardThree')
+let cardFour = document.getElementById('cardFour')
+let cardFive = document.getElementById('cardFive')
+let cardSix = document.getElementById('cardSix')
+let cardSeven = document.getElementById('cardSeven')
+let cardEight = document.getElementById('cardEight')
+
+
+
+
+
+
+
 
 // let jsonDatajs= jsonData
 // console.log(jsonDatajs)
@@ -123,23 +139,31 @@ window.onload = function obama(){
     btnfold.addEventListener('click', fold)
    
 };
+weakShit ()
 
 let betFunctions = [
     () => {
             playerCardOne.innerText = s[1],
+            // card.src= 'cards/2C.svg'
+            cardOne.src =`cards/${s[1]}.svg`
+           
             playerCardTwo.innerText = s[2]
+            cardTwo.src =`cards/${s[2]}.svg`
             var x = parseInt(document.getElementById("input").value);
             document.getElementById("ante").innerHTML = `Ante: $${x}`;
             bankroll.innerText = (Number.parseInt(bankroll.innerText))- (Number.parseInt(x))
             // console.log(Number.parseInt(x))
             document.getElementById('outcome').innerHTML = parseInt(x)
-            weakShit ()
+            
             
     },
     () => {
         communityCardOne.innerText = s[5],
+        cardFive.src =`cards/${s[5]}.svg`
         communityCardTwo.innerText = s[6],
+        cardSix.src =`cards/${s[6]}.svg`
         communityCardThree.innerText = s[7]
+        cardSeven.src =`cards/${s[7]}.svg`
         var y = document.getElementById("input").value;
         document.getElementById("preflop").innerHTML = `Preflop $${parseInt(y)}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(y))
@@ -151,6 +175,7 @@ let betFunctions = [
     },
     () => {
         communityCardFour.innerText = s[8]
+        cardEight.src =`cards/${s[8]}.svg`
         var z = document.getElementById("input").value;
         document.getElementById("flop").innerHTML = `Flop: $${z}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(z))
@@ -160,6 +185,7 @@ let betFunctions = [
     },
     () => {
         communityCardFive.innerText = s[9]
+        cardNine.src =`cards/${s[9]}.svg`
         var a = document.getElementById("input").value;
         document.getElementById("turn").innerHTML = `Turn: $${a}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(a))
@@ -175,6 +201,7 @@ let betFunctions = [
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(b))
         console.log('quint dragons')
         document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(b)
+        btnBet.innerText='Click to Play Again'
         weakShit ()
         function checkLoss (){
             if(bankroll.innerText <= '0'){
@@ -260,9 +287,12 @@ let betFunctions = [
             document.getElementById("river").innerHTML = 'River:'
             
             situation.innerText='Place Your Bets'
-
+            
             }
         }
+        weakShit ()
+        btnBet.innerText = 'Bet'
+        
 }
     
     ];
