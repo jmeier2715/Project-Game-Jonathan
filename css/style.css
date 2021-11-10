@@ -1,3 +1,59 @@
+img{
+    height: auto; 
+    width: auto; 
+    max-width: 125px; 
+    max-height: 125px;
+}
+body{
+    background-color:#35654d;
+    text-align: center;
+}
+.cardBet{
+    position:absolute;
+    margin-left: 25vh;
+    padding-right: 10vh;
+    background-color: white;
+    padding-left: 2vh;
+    padding-bottom: 2vh;
+    border-radius: 25px;
+    box-shadow: inset 0 0 20px #35654d;
+}
+
+.gameInterface{
+    position:absolute;
+    padding-left: 130vh;
+    padding-top: 10vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.bankroll{
+    font-size: 20px;
+}
+
+#dealerCards{
+    display: flex;
+    align-items:center;
+    text-align:center;
+    justify-content: center;
+    padding:px;
+   
+}
+#communityCards{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    justify-content: space-evenly;
+
+}
+#playerCards{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
 h1{
     font-family: Arial, Helvetica, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content: center;
 }
