@@ -36,7 +36,7 @@ const url ='https://api.pokerapi.dev/v1/winner/texas_holdem?cc='
     let situation = document.querySelector('.situation')
     let bankroll = document.querySelector('.bankroll')
     let i = 0     
-//function that resets our JSON output to its "original" position
+//function that keeps our JSON output hidden
 function reset () {
     let JSON = document.getElementById("jsonResponse"),
         displayValue = "";
@@ -45,16 +45,17 @@ function reset () {
         JSON.style.display = displayValue;
         }
 
-//functions that controls card distribution
-    let parts = [['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'], ['C', 'S', 'D', 'H']],
+//function that controls card distribution
+let parts = [['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'], ['C', 'S', 'D', 'H']],
         result = parts.reduce((a, b) => a.reduce((r, v) => r.concat(b.map(w => [].concat(v, w))), []));
-    let as = result.map(a => a.join('')) 
-    let s = as.sort(func)
+let as = result.map(a => a.join('')) 
+let s = as.sort(func)
+    function func(a, b) {  
+        return 0.5 - Math.random()
+    }
 
-function func(a, b) {  
-  return 0.5 - Math.random()
-} 
-
+    console.log((s[1]+','+s[2]))
+//function that adds to the value of i on each click 
 function clickFunctions () {
     betFunctions[i++]();
     console.log(i)
@@ -62,13 +63,10 @@ function clickFunctions () {
         return
     }
 }   
-let outcome = document.querySelector('outcome')
-console.log(outcome)
-
+//function for folding a hand (resets all elements to "original" position)
 function fold (){
     bankroll.innerText = Number.parseInt(bankroll.innerText)
-    let s = as.sort(func)
-    console.log(s);  
+    let s = as.sort(func)  
     function func(a, b) {  
     return 0.5 - Math.random();
     }
@@ -76,31 +74,26 @@ function fold (){
         i=0
     }
     buttonReset()
-    // playerCardOne.innerText = 'playerCardOne',
-    // playerCardTwo.innerText = 'playerCardTwo',
-    // dealerCardOne.innerText = 'dealerCardOne',
-    // dealerCardTwo.innerText = 'dealerCardTwo'            
-    // // communityCardOne.innerText = 'communityCardOne',
-    // // communityCardTwo.innerText = 'communityCardTwo',
-    // // communityCardThree.innerText = 'communityCardThree',
-    // // communityCardFour.innerText = 'communityCardFour',
-    // // communityCardFive.innerText = 'communityCardFive'
-
+    cardOne.src = ""
+    cardTwo.src = ""
+    cardThree.src =""
+    cardFour.src = ""
+    cardFive.src = ""
+    cardSix.src = ""
+    cardSeven.src = ""
+    cardEight.src = ""
+    cardNine.src = ""
     jsonResponse.innerText
-
-    document.getElementById('outcome').innerHTML = 'hello'
-
+    document.getElementById('outcome').innerHTML = '0'
     document.getElementById("ante").innerHTML = 'Ante:'
     document.getElementById("preflop").innerHTML = 'Preflop:'
     document.getElementById("flop").innerHTML = 'Flop:'
     document.getElementById("turn").innerHTML = 'Turn:'
     document.getElementById("river").innerHTML = 'River:'
-    
-    situation.innerText='Place Your Bets'
-
+    situation.innerText='Chickened out? Try another bet!'
 }
-
-window.onload = function obama(){
+//function that establishes the bet and fold buttons at click [0] upon load
+window.onload = function backgroundInit(){
     let btnBet = document.getElementsByClassName('bet')[0];
     btnBet.addEventListener('click', clickFunctions)
     let btnfold = document.getElementsByClassName('igiveup')[0];
@@ -108,78 +101,59 @@ window.onload = function obama(){
    
 };
 reset ()
-
+//array of functions that correlate to the click [0,1,2,3,etc]
 let betFunctions = [
     () => {
-            // playerCardOne.innerText = s[1],
-            // card.src= 'cards/2C.svg'
             cardOne.src =`cards/${s[1]}.svg`
-           
-            // playerCardTwo.innerText = s[2]
             cardTwo.src =`cards/${s[2]}.svg`
             cardThree.src=('cards/BLUE_BACK.svg')
             cardFour.src=('cards/BLUE_BACK.svg')
             let x = parseInt(document.getElementById("input").value);
             document.getElementById("ante").innerHTML = `Ante: $${x}`;
-            bankroll.innerText = (Number.parseInt(bankroll.innerText))- (Number.parseInt(x))
-            // console.log(Number.parseInt(x))
+            bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(x)) 
             document.getElementById('outcome').innerHTML = parseInt(x)
-            
-            
+            situation.innerText='Place Your Bets'
     },
     () => {
-        // communityCardOne.innerText = s[5],
         cardFive.src =`cards/${s[5]}.svg`
-        // communityCardTwo.innerText = s[6],
         cardSix.src =`cards/${s[6]}.svg`
-        // communityCardThree.innerText = s[7]
         cardSeven.src =`cards/${s[7]}.svg`
         let y = document.getElementById("input").value;
         document.getElementById("preflop").innerHTML = `Preflop $${parseInt(y)}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(y))
-        // document.getElementById('outcome').innerHTML = parseInt(x)+ parseInt(y)
-        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(y)
-        console.log('twin dragons')
-        
-        
+        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+(Number.parseInt(y))       
     },
     () => {
-        // communityCardFour.innerText = s[8]
         cardEight.src =`cards/${s[8]}.svg`
         let z = document.getElementById("input").value;
         document.getElementById("flop").innerHTML = `Flop: $${z}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(z))
-        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(z)
-        console.log('triple dragons')
-       
+        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+(Number.parseInt(z))       
     },
     () => {
-        // communityCardFive.innerText = s[9]
         cardNine.src =`cards/${s[9]}.svg`
         let a = document.getElementById("input").value;
         document.getElementById("turn").innerHTML = `Turn: $${a}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(a))
-        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(a)
-        console.log('quad dragons')
-        
+        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+(Number.parseInt(a))
     },
     () => {
-        dealerCardOne.innerText = s[3],
-        dealerCardTwo.innerText = s[4]
+        cardThree.src=(`cards/${s[3]}.svg`)
+        cardFour.src=(`cards/${s[4]}.svg`)
         let b = document.getElementById("input").value;
         document.getElementById("river").innerHTML = `River: $${b}`;
         bankroll.innerText = (Number.parseInt(bankroll.innerText))-(Number.parseInt(b))
-        console.log('quint dragons')
-        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+parseInt(b)
+        document.getElementById('outcome').innerHTML = (Number.parseInt(document.getElementById('outcome').innerHTML))+(Number.parseInt(b))
         btnBet.innerText='Click to Play Again'
         reset ()
+        //function to check loss
         function checkLoss (){
             if(bankroll.innerText <= '0'){
                 situation.innerText='Out of Money? Time to Hit the ATM!'
             }
         }
         checkLoss()
-        if ((playerCardOne.innerText+','+playerCardTwo.innerText) == (jsonResponse.innerText)){
+        if ((s[1]+','+s[2]) == (jsonResponse.innerText)){
             situation.innerText='Nice Win!'
         }
         else {
@@ -190,7 +164,7 @@ let betFunctions = [
     () => { 
         winCheck()
         function winCheck (){
-        if ((playerCardOne.innerText+','+playerCardTwo.innerText) == (jsonResponse.innerText)){
+        if ((s[1]+','+s[2]) == (jsonResponse.innerText)){
             let s = as.sort(func)
             console.log(s);  
             function func(a, b) {  
@@ -200,19 +174,18 @@ let betFunctions = [
                 i=0
             }
             buttonReset()
-            playerCardOne.innerText = 'playerCardOne',
-            playerCardTwo.innerText = 'playerCardTwo',
-            dealerCardOne.innerText = 'dealerCardOne',
-            dealerCardTwo.innerText = 'dealerCardTwo'            
-            // // communityCardOne.innerText = 'communityCardOne',
-            // // communityCardTwo.innerText = 'communityCardTwo',
-            // // communityCardThree.innerText = 'communityCardThree',
-            // // communityCardFour.innerText = 'communityCardFour',
-            // // communityCardFive.innerText = 'communityCardFive'
             bankroll.innerText = (Number.parseInt(bankroll.innerText))+(2 * (Number.parseInt(document.getElementById('outcome').innerHTML)))
-            
+            cardOne.src = ""
+            cardTwo.src = ""
+            cardThree.src =""
+            cardFour.src = ""
+            cardFive.src = ""
+            cardSix.src = ""
+            cardSeven.src = ""
+            cardEight.src = ""
+            cardNine.src = ""
             jsonResponse.innerText =('hello')
-            document.getElementById('outcome').innerHTML = 'hello'
+            document.getElementById('outcome').innerHTML = '0'
             document.getElementById("ante").innerHTML = 'Ante:'
             document.getElementById("preflop").innerHTML = 'Preflop:'
             document.getElementById("flop").innerHTML = 'Flop:'
@@ -231,26 +204,25 @@ let betFunctions = [
                 i=0
             }
             buttonReset()
-            playerCardOne.innerText = 'playerCardOne',
-            playerCardTwo.innerText = 'playerCardTwo',
-            dealerCardOne.innerText = 'dealerCardOne',
-            dealerCardTwo.innerText = 'dealerCardTwo'            
-            // // communityCardOne.innerText = 'communityCardOne',
-            // // communityCardTwo.innerText = 'communityCardTwo',
-            // // communityCardThree.innerText = 'communityCardThree',
-            // // communityCardFour.innerText = 'communityCardFour',
-            // // communityCardFive.innerText = 'communityCardFive'
 
             jsonResponse.innerText
 
-            document.getElementById('outcome').innerHTML = 'hello'
-
+            document.getElementById('outcome').innerHTML = '0'
+            cardOne.src = ""
+            cardTwo.src = ""
+            cardThree.src =""
+            cardFour.src = ""
+            cardFive.src = ""
+            cardSix.src = ""
+            cardSeven.src = ""
+            cardEight.src = ""
+            cardNine.src = ""
             document.getElementById("ante").innerHTML = 'Ante:'
             document.getElementById("preflop").innerHTML = 'Preflop:'
             document.getElementById("flop").innerHTML = 'Flop:'
             document.getElementById("turn").innerHTML = 'Turn:'
             document.getElementById("river").innerHTML = 'River:'
-            
+    
             situation.innerText='Place Your Bets'
             
             }
